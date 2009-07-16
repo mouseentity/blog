@@ -1,0 +1,52 @@
+
+\documentclass[a4paper]{article}
+
+\renewcommand\maketitle{}
+
+%\usepackage {ucs}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{pbox}
+\usepackage{cite}
+\usepackage{subfigure}
+
+\begin{document}
+
+\input{medefs.tex}
+
+\title{Проверка}
+
+\maketitle
+
+Русский расовый текст
+
+\httextmode
+
+$\int_{0}^{1}\frac{x^{4}\left(1-x\right)^{4}}{1+x^{2}}dx=
+\frac{22}{7}-\pi$
+
+$(Ff \circ Gf)'_f h = ((Ff)' \circ Gf)\cdot G'fh + F'fh \circ Gf$
+
+\htpicmode
+
+$\int_{0}^{1}\frac{x^{4}\left(1-x\right)^{4}}{1+x^{2}}dx=
+\frac{22}{7}-\pi$
+
+$(Ff \circ Gf)'_f h = ((Ff)' \circ Gf)\cdot G'fh + F'fh \circ Gf$
+
+\section{Hello, world!}  
+This is a simple \LaTeX{} document.  
+\section{Ars magna}  
+This is easy:  
+\[ a^2 + b^2 = c^2 \]  
+But what about  
+\[ \alpha^3 + \beta^3 = \gamma^3 \, ? \]  
+
+\end{document}
