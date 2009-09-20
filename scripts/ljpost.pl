@@ -28,6 +28,7 @@ GetOptions(
 	);
 
 $username or die "Specify username.\n";
+$server_url or die "Specify sever.\n";
 
 if( ($pass && $hpass) || (!$pass && !$hpass) ) {
 	 die "Specify either password or hpassword (md5 of password).\n";
@@ -58,8 +59,8 @@ if( !$edit ) {
 		'auth_challenge' => $chal->{'challenge'},
 		'auth_response' => $resp,
 		'ver' => 1,
-		'subject' => decode('UTF-8', $subj),
-		'event' => decode('UTF-8', <STDIN>),
+		'subject' => $subj,
+		'event' => <STDIN>,
 		'lineendings' => "\n",
 		'security' => $security,
 		'usejournal' => $journal,
@@ -81,8 +82,8 @@ if( !$edit ) {
 		'auth_response' => $resp,
 		'ver' => 1,
 		'itemid' => $edit,
-		'subject' => decode('UTF-8', $subj),
-		'event' => decode('UTF-8', <STDIN>),
+		'subject' => $subj,
+		'event' => <STDIN>,
 		'lineendings' => "\n",
 		'security' => $security,
 		'usejournal' => $journal

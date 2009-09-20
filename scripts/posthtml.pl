@@ -8,6 +8,7 @@ use HTML::Element;
 use File::Basename;
 use Encode qw(encode decode);
 use File::Temp qw(tempfile);
+use FindBin qw($Bin);
 
 my $security;
 my $journal;
@@ -98,7 +99,7 @@ my %imgs;
 map { $imgs{$_->attr('src')} = $_ } @imgels;
 
 $/ = "\n";
-my @uploadres = `./fotoup.pl $imglist | tee /dev/stderr`;
+my @uploadres = `$Bin/fotoup.pl $imglist | tee /dev/stderr`;
 
 $prefix = quotemeta($prefix);
 while( @uploadres ) {
@@ -124,7 +125,7 @@ while( @uploadres ) {
 #	
 #	my $src = $dir . "/" . $img->attr('src');
 #	$/ = "\n";
-#	my @lala = `./fotoup.pl '$src'`;
+#	my @lala = `$Bin/fotoup.pl '$src'`;
 #	if( $? != 0 ) {
 #		print STDERR "fotoup.pl exited with code $?, here is its output:\n";
 #		print STDERR @lala;
@@ -157,7 +158,7 @@ system("sed 's/^\@media.\\+//g' < '$css' > '$tempcss'");
 
 print STDERR "Inlining css...\n";
 
-open(OUTPUT, "|./css-compile.pl -css '$tempcss' | tr '\\n' ' ' > '$temphtml'")
+open(OUTPUT, "|$Bin/css-compile.pl -css '$tempcss' | tr '\\n' ' ' > '$temphtml'")
 	or die "Cannot execute ./css-compile.pl\n";
 
 print OUTPUT $root->as_HTML;
@@ -169,6 +170,6 @@ $? == 0 or die "Errors during css inlining\n";
 
 print STDERR "Uploading html to the server...\n";
 
-system( "cat $temphtml | ./ljpost.pl --subj '$subj' --user '$user' --pass '$pass' --server '$server_url'" . 
+system( "cat $temphtml | $Bin/ljpost.pl --subj '$subj' --user '$user' --pass '$pass' --server '$server_url'" . 
 	"  --journal '$journal' --security '$security' " . 
 	($edit ? "--edit '$edit'" : " | head -1 > '$itemidfile'"));
